@@ -1,10 +1,10 @@
 import { ChoiceGroup, ComboBox, Dropdown, PrimaryButton, Slider, TextField, Toggle } from '@fluentui/react';
 import * as React from 'react';
-
+import styles from '../FirstWebpart.module.scss';
 const BasiccForm:React.FC<{}>=()=>{
    return(
     <>
-    <h3 style={{color:"blue",textAlign:"center",textDecoration:"underline"}}>Basic Form</h3>
+    <h3 className={styles.h4}>Basic Form</h3>
     <hr/>
     <form>
         <TextField

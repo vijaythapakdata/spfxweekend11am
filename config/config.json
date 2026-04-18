@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/firstWebpart/FirstWebpartWebPart.manifest.json"
         }
       ]
+    },
+    "share-point-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/sharePointForm/SharePointFormWebPart.js",
+          "manifest": "./src/webparts/sharePointForm/SharePointFormWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "FirstWebpartWebPartStrings": "lib/webparts/firstWebpart/loc/{locale}.js"
+    "FirstWebpartWebPartStrings": "lib/webparts/firstWebpart/loc/{locale}.js",
+    "SharePointFormWebPartStrings": "lib/webparts/sharePointForm/loc/{locale}.js"
   }
 }

@@ -4,6 +4,10 @@ import type { IFirstWebpartProps } from './IFirstWebpartProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import BasiccForm from './ReactUnderstanding/BasicForm';
 import { ListName } from '../../../Enum/ListNames';
+import UseStateHooks from './ReactUnderstanding/UseStateHooks';
+import UseEffectHooks from './ReactUnderstanding/UseEffect';
+import UseCallbackHooks from './ReactUnderstanding/UseCallbackHooks';
+import UseMemoHooks from './ReactUnderstanding/useMemoHooks';
 const FirstWebpart:React.FC<IFirstWebpartProps>=(props)=>{
 
   //ways to declare variable in react
@@ -164,6 +168,12 @@ console.log("I am for loop");
       </li>
     </ul>
     {ListName.List1}
+
+    {/* Hooks calling */}
+    <UseStateHooks />
+    <UseEffectHooks/>
+    <UseCallbackHooks/>
+    <UseMemoHooks/>
     </>
   )
 }

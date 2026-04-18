@@ -11,3 +11,9 @@ export interface MySecondListColumns{
         Title:string
     }
 }
+
+export interface ISharePointFormColumns{
+    Name:string;
+  
+
+}

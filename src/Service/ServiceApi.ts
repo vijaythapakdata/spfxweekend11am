@@ -14,7 +14,15 @@ public async addListItems(formData:ISharePointFormColumns):Promise<any>{
 try{
 const listName=this.web.lists.getByTitle(ListName.SharePointFormList); //here the list name is coming from the enum file
 const result=await listName.items.add({
-    Title:formData.Name
+    Title:formData.Name,
+    EmailAddress:formData.Email,
+    Age:parseInt(formData.Age),
+    Salary:parseFloat(formData.Compensation),
+    Score:formData.Experience,
+    Permission:formData.Permission,
+    Address:formData.FullAddress,
+    AdminId:formData.AdminId,
+    ManagerId:{results:formData.ManagerId}
 });
 return result
 }

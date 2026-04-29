@@ -14,6 +14,16 @@ export interface MySecondListColumns{
 
 export interface ISharePointFormColumns{
     Name:string;
+    Email:string;
+    Age:any;
+    Permission:boolean;
+    Compensation:any;
+    Experience:number;
+    FullAddress:string;
+    Admin:string;
+    AdminId:any;
+Manager:string[];
+ManagerId:any[];
   
 
 }

@@ -8,7 +8,7 @@ export default class ChoiceService{
         this.context=context
     }
 //reading the choice
-private async getChoiceValues(siteurl:string,fieldvalue:any):Promise<any>{
+public async getChoiceValues(siteurl:string,fieldvalue:any):Promise<any>{
     try{
 
         const response=await fetch(`${siteurl}/_api/web/lists/getbytitle('${ListName.SharePointFormList}')/fields/?$filter=EntityPropertyName eq '${fieldvalue}'`,{
@@ -37,7 +37,7 @@ throw err;
     }
 }
 
-private async getLookupValues():Promise<any>{
+public async getLookupValues():Promise<any>{
     try{
 const response=await fetch(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('${ListName.LookupList}')/items?$select=Title,ID`,{
     method:'GET',

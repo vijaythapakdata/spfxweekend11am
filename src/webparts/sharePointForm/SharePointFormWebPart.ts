@@ -35,7 +35,11 @@ private _serviceClass:ChoiceService|undefined
         
         context:this.context,
         siteurl:this.context.pageContext.web.absoluteUrl,
-        departmentoption:await this._serviceClass.
+        departmentoption:await this._serviceClass?.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Department"),
+        genderoption:await this._serviceClass?.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Gender"),
+        skillsoption:await this._serviceClass?.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Skills"),
+        cityoption:await this._serviceClass?.getLookupValues()
+        
       }
     );
 

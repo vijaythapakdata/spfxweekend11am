@@ -4,12 +4,13 @@ import type { ISharePointFormProps } from './ISharePointFormProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { ServiceApiClass } from '../../../Service/ServiceApi';
 import { ISharePointFormColumns } from '../../../Commonmethods/SharePointColumns';
-import { useEffect,useCallback,useState } from 'react';
-import {sp} from "@pnp/sp/presets/all";
+import {useCallback,useState } from 'react';
+
 import { Dialog } from '@microsoft/sp-dialog';
-import { PrimaryButton, Slider, TextField, Toggle } from '@fluentui/react';
+import { ChoiceGroup, Dropdown, PrimaryButton, Slider, TextField, Toggle } from '@fluentui/react';
 import {  PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import { handleMultiSelectedPeoplePicker, handleSingleSelectedPeoplePicker } from '../../../Commonmethods/HandlePeoplePicker';
+import { handleSkillsChange } from '../../../Commonmethods/IMultiselectdropdown';
 const SharePointForm:React.FC<ISharePointFormProps>=(props)=>{
   const [formdata,setFormData]=useState<ISharePointFormColumns>({
     Name:"",
@@ -22,15 +23,14 @@ const SharePointForm:React.FC<ISharePointFormProps>=(props)=>{
     ManagerId:[],
     Admin:"",
     AdminId:0,
-    Permission:false
+    Permission:false,
+    Department:"",
+    Skills:[],
+    Gender:"",
+    City:""
   });
 
-  useEffect(()=>{
-    sp.setup({
-      spfxContext:props.context as any
-    })
-  },[props.context]);
-
+  
   const createItems=async()=>{
     try{
 const _service=new ServiceApiClass(props.siteurl);
@@ -48,7 +48,11 @@ setFormData({
     ManagerId:[],
     Admin:"",
     AdminId:0,
-    Permission:false
+    Permission:false,
+     Department:"",
+    Skills:[],
+    Gender:"",
+    City:""
 })
     }
    
@@ -126,6 +130,38 @@ setFormData(prev=>({...prev,[field]:value}))
     webAbsoluteUrl={props.context.pageContext.web.absoluteUrl}
     defaultSelectedUsers={formdata.Manager}
     resolveDelay={1000} />
+    {/* Department */}
+    <Dropdown
+    label='Department'
+    options={props.departmentoption}
+    placeholder='--select--'
+    selectedKey={formdata.Department}
+    onChange={(_,option)=>handleChange("Department",option?.key as string)}
+    />
+    {/* City */}
+    <Dropdown
+    label='City'
+    options={props.cityoption}
+    placeholder='--select--'
+    selectedKey={formdata.City}
+    onChange={(_,option)=>handleChange("City",option?.key as string)}
+    />
+    {/* Skills */}
+    <Dropdown
+    label='Skills'
+    options={props.skillsoption}
+    defaultSelectedKeys={formdata.Skills}
+    onChange={(_,opt)=>handleSkillsChange(opt!,formdata,setFormData)}
+    multiSelect
+    placeholder='--select--'
+    />
+    {/* Gender */}
+    <ChoiceGroup
+    label='Gender'
+    options={props.genderoption}
+  selectedKey={formdata.Gender}
+  onChange={(_,option)=>handleChange("Gender",option?.key as string)}
+    />
     {/* Address */}
        <TextField
     label='Full Address'
